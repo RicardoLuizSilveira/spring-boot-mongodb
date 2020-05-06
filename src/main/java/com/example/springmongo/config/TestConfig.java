@@ -37,6 +37,10 @@ public class TestConfig implements CommandLineRunner{
 		Post p2 = new Post(null, Instant.now(), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(u1));
 		postRepository.saveAll(Arrays.asList(p1, p2));
 		
+		u1.getPosts().add(p1);
+		u1.getPosts().add(p2);
+		userRepository.save(u1);
+		
 		
 	}
 
