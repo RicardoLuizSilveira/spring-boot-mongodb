@@ -1,0 +1,22 @@
+package com.example.springmongo.services;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.springmongo.domain.Post;
+import com.example.springmongo.repository.PostRepository;
+import com.example.springmongo.services.exceptions.ObjectNotFoundException;
+
+@Service
+public class PostService {
+	
+	@Autowired
+	private PostRepository repository; 
+	
+	public Post findById(String id) {
+		Optional<Post> optional = repository.findById(id);
+		return optional.orElseThrow(() -> new ObjectNotFoundException(id));
+	}
+}
