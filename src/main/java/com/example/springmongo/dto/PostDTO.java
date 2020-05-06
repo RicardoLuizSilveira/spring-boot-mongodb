@@ -2,6 +2,8 @@ package com.example.springmongo.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.example.springmongo.domain.Post;
 
@@ -14,6 +16,7 @@ public class PostDTO implements Serializable{
 	private String body;
 	
 	private AuthorDTO author;
+	private List<CommentDTO> comments = new ArrayList<>();
 	
 	public PostDTO() {
 	}
@@ -25,6 +28,7 @@ public class PostDTO implements Serializable{
 		this.title = obj.getTitle();
 		this.body = obj.getBody();
 		this.author = obj.getAuthor();
+		this.comments = obj.getComments();
 	}
 
 	public String getId() {
@@ -65,5 +69,9 @@ public class PostDTO implements Serializable{
 
 	public void setAuthor(AuthorDTO author) {
 		this.author = author;
+	}
+
+	public List<CommentDTO> getComments() {
+		return comments;
 	}
 }
