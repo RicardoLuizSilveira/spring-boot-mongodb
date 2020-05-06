@@ -40,7 +40,7 @@ public class TestConfig implements CommandLineRunner{
 		
 		p1.getComments().add(new CommentDTO("Aproveite!", Instant.parse("2020-05-06T08:12:07Z"), new UserDTO(u3)));
 		p1.getComments().add(new CommentDTO("Boa Viagem mano!", Instant.parse("2020-05-06T10:12:07Z"), new UserDTO(u2)));
-		p2.getComments().add(new CommentDTO("Tenha um ótimo dia", Instant.parse("2020-05-05T10:12:07Z"), new UserDTO(u2)));
+		p2.getComments().add(new CommentDTO("Tenha um ótimo dia", Instant.parse("2020-05-06T10:12:07Z"), new UserDTO(u2)));
 		
 		postRepository.saveAll(Arrays.asList(p1, p2));
 		

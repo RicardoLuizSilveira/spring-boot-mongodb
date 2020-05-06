@@ -1,5 +1,6 @@
 package com.example.springmongo.resource;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,4 +37,27 @@ public class PostResource {
 		List<PostDTO> listDto = list.stream().map(x -> new PostDTO(x)).collect(Collectors.toList());
 		return ResponseEntity.ok(listDto);
 	}
+	
+	@GetMapping(value = "/fullsearch")
+	public ResponseEntity<List<PostDTO>> fullSearch(
+			@RequestParam(value = "text", defaultValue = "") String txt,
+			@RequestParam(value = "minDate", defaultValue = "") String minDate,
+			@RequestParam(value = "maxDate", defaultValue = "") String maxDate) {
+		txt = URL.decodeParam(txt);
+		
+		Instant min = URL.convertInstant(minDate + "T00:00:00Z", Instant.parse("2000-01-01T00:00:00Z"));
+		Instant max = URL.convertInstant(maxDate + "T23:59:59Z", Instant.now());
+		List<Post> list = service.fullSearch(txt, min, max);
+		List<PostDTO> listDto = list.stream().map(x -> new PostDTO(x)).collect(Collectors.toList());
+		return ResponseEntity.ok(listDto);
+	}
 }
+
+
+
+
+
+
+
+
+

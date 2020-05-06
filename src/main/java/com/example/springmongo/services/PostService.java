@@ -1,5 +1,6 @@
 package com.example.springmongo.services;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,5 +24,9 @@ public class PostService {
 	
 	public List<Post> findByTitle(String txt) {
 		return repository.searchByTitle(txt);
+	}
+	
+	public List<Post> fullSearch(String txt, Instant minDate, Instant maxDate) {
+		return repository.fullSearch(txt, minDate, maxDate);
 	}
 }
